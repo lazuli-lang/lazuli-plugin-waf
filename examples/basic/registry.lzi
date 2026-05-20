@@ -1,0 +1,11 @@
+registry
+  env
+    group waf
+      server CLOUDFLARE_WAF_ZONE_ID: Text required in production
+      server CLOUDFLARE_WAF_API_TOKEN: Secret required in production
+
+  bindings
+    waf: WAFFilter
+      adapter @plugin/waf
+      endpoint env.CLOUDFLARE_WAF_ZONE_ID
+      auth keys env.CLOUDFLARE_WAF_API_TOKEN
